@@ -53,6 +53,15 @@ function simulate()
         drawnow
         pause(0.05)
     end
+        figure
+    plot(command_d1(:,1));
+    hold on
+    plot(command_d1(:,2));
+     figure
+    plot(command_d2(:,1));
+    hold on
+    plot(command_d2(:,2));
+    
     save('states.mat','state_trajectory')
     save('control.mat','control_variables')
 

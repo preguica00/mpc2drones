@@ -1,6 +1,6 @@
 function [H,Ts,id1_u1,id1_u2,id1_x,id1_z,id1_theta,id1_dotx,id1_dotz,id1_dottheta, id2_u1,id2_u2,id2_x,id2_z,id2_theta,id2_dotx,id2_dotz,id2_dottheta] = drones_info
     
-    H=20;
+    H=15;
     Ts = 0.2;
     
     id1_u1 = 1:H;
