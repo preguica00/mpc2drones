@@ -1,4 +1,4 @@
-function [H,Ts,id1_u1,id1_u2,id1_x,id1_z,id1_theta,id1_dotx,id1_dotz,id1_dottheta, id2_u1,id2_u2,id2_x,id2_z,id2_theta,id2_dotx,id2_dotz,id2_dottheta] = drones_info
+function [H,Ts,drone1_info, drone2_info] = drones_info
     
     H=15;
     Ts = 0.2;
@@ -19,7 +19,11 @@ function [H,Ts,id1_u1,id1_u2,id1_x,id1_z,id1_theta,id1_dotx,id1_dotz,id1_dotthet
     id2_dotx = (1:H) + 13*H;
     id2_dotz= (1:H) + 14*H;
     id2_dottheta = (1:H) + 15*H;
- 
+    
+    drone1_info=[id1_u1;id1_u2;id1_x;id1_z;id1_theta;id1_dotx;id1_dotz;id1_dottheta];
+    
+    drone2_info=[id2_u1;id2_u2;id2_x;id2_z;id2_theta;id2_dotx;id2_dotz;id2_dottheta];
+
    
 end
 

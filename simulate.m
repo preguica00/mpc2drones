@@ -20,7 +20,7 @@ function simulate()
     current_state = [0;0;0;0;0;0;0;0;0;0;0;0];
     current_MPC_solution = [];
     
- [H,Ts,id1_u1,id1_u2,id1_x,id1_z,id1_theta,id1_dotx,id1_dotz,id1_dottheta, id2_u1,id2_u2,id2_x,id2_z,id2_theta,id2_dotx,id2_dotz,id2_dottheta] = drones_info;
+    [H,Ts,drone1_info, drone2_info] = drones_info;
 %     [xobs,yobs, obj_coord,radius] = obstacle;
     [mass,inertia_moment,arm_moment,gravitational_acceleration] = parameters;
 %     plot(xobs,yobs, '-k','Linewidth', 1.5);

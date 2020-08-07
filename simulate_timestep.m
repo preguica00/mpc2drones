@@ -1,5 +1,6 @@
 function current_state = simulate_timestep(current_state,command_d1,command_d2)
- [H,Ts,id1_u1,id1_u2,id1_x,id1_z,id1_theta,id1_dotx,id1_dotz,id1_dottheta, id2_u1,id2_u2,id2_x,id2_z,id2_theta,id2_dotx,id2_dotz,id2_dottheta] = drones_info;
+ 
+    [H,Ts,drone1_info, drone2_info] = drones_info;
     tspan = [0 Ts];
 
     command=[command_d1;command_d2];
