@@ -1,5 +1,4 @@
-# mpc_drone_forces
-
+# mpc_2drones
 
 This example is a quadcopter model controlled by an MPC controller. To run the program, use `simulate.m`.
 
