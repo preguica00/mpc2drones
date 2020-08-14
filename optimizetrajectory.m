@@ -1,4 +1,4 @@
-  function  [command_d1, command_d2, optimum, predicted_trajectory_d1,predicted_trajectory_d2] = ...
+  function  [command, optimum, predicted_trajectory] = ...
     optimizetrajectory(current_state, optimum)
 
 
@@ -42,30 +42,30 @@
    
    %% Unpacking drones
    % drone 1
-   id1_u1 = drone1_info(1);
-   id1_u2 = drone1_info(2);
-   id1_x = drone1_info(3);
-   id1_z = drone1_info(4);
-   id1_theta = drone1_info(5);
-   id1_dotx = drone1_info(6);
-   id1_dotz = drone1_info(7);
-   id1_dottheta = drone1_info(8);
+   % drone 1
+   id1_u1 = drone1_info(1,:);
+   id1_u2 = drone1_info(2,:);
+   id1_x = drone1_info(3,:);
+   id1_z = drone1_info(4,:);
+   id1_theta = drone1_info(5,:);
+   id1_dotx = drone1_info(6,:);
+   id1_dotz = drone1_info(7,:);
+   id1_dottheta = drone1_info(8,:);
    
    % drone 2
-   id2_u1 = drone2_info(9);
-   id2_u2 = drone2_info(10);
-   id2_x = drone2_info(11);
-   id2_z = drone2_info(12);
-   id2_theta = drone2_info(13);
-   id2_dotx = drone2_info(14);
-   id2_dotz = drone2_info(15);
-   id2_dottheta = drone2_info(16);
+   id2_u1 = drone2_info(1,:);
+   id2_u2 = drone2_info(2,:);
+   id2_x = drone2_info(3,:);
+   id2_z = drone2_info(4,:);
+   id2_theta = drone2_info(5,:);
+   id2_dotx = drone2_info(6,:);
+   id2_dotz = drone2_info(7,:);
+   id2_dottheta = drone2_info(8,:);
 
    %% optimal control
    % drone 1
    u1_optimum_d1 = optimum(id1_u1);
    u2_optimum_d1 = optimum(id1_u2);
-   command_d1 = [u1_optimum_d1(1), u2_optimum_d1(1)];
    
    x_optimum_d1 = optimum(id1_x);
    z_optimum_d1 = optimum(id1_z);
@@ -77,7 +77,6 @@
    % drone 2
    u1_optimum_d2 = optimum(id2_u1);
    u2_optimum_d2 = optimum(id2_u2);
-   command_d2 = [u1_optimum_d2(1), u2_optimum_d2(1)];
    
    x_optimum_d2 = optimum(id2_x);
    z_optimum_d2 = optimum(id2_z);
@@ -86,10 +85,15 @@
    zvelocity_optimum_d2 = optimum(id2_dotz);
    angvelocity_optimum_d2 = optimum(id2_dottheta);
    
-   %predicted trajectory of drones
-   predicted_trajectory_d1 = [x_optimum_d1,z_optimum_d1,theta_optimum_d1,xvelocity_optimum_d1,zvelocity_optimum_d1,angvelocity_optimum_d1];
-   predicted_trajectory_d2 = [x_optimum_d2,z_optimum_d2,theta_optimum_d2,xvelocity_optimum_d2,zvelocity_optimum_d2,angvelocity_optimum_d2];
 
+%    command_d1 = [u1_optimum_d1(1), u2_optimum_d1(1)];
+%    command_d2 = [u1_optimum_d2(1), u2_optimum_d2(1)];
+command =[u1_optimum_d1(1), u2_optimum_d1(1),u1_optimum_d2(1), u2_optimum_d2(1)];
+
+   %predicted trajectory of drones
+   predicted_trajectory = [x_optimum_d1,z_optimum_d1,theta_optimum_d1,xvelocity_optimum_d1,zvelocity_optimum_d1,angvelocity_optimum_d1,x_optimum_d2,z_optimum_d2,theta_optimum_d2,xvelocity_optimum_d2,zvelocity_optimum_d2,angvelocity_optimum_d2];
+
+   
   
   end
 

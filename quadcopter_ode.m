@@ -1,6 +1,5 @@
 function dydt = quadcopter_ode(t,y,u)
-
-[H,Ts,drone1_info, drone2_info] = drones_info;
+ [H,Ts,drone1_info, drone2_info] = drones_info;
 [mass,inertia_moment,arm_moment,gravitational_acceleration] = parameters;
 
 %% Unpack the state and input vectors
@@ -23,12 +22,12 @@ velocity_z_d2= y(11);
 velocity_pitch_d2= y(12);
 
 %control variables drone 1
-diff_mode_d1  = u(1,:);
-common_mode_d1 = u(2,:);
+diff_mode_d1  = u(1);
+common_mode_d1 = u(2);
 
 %control variables drone 2
-diff_mode_d2  = u(3,:);
-common_mode_d2 = u(4,:);
+diff_mode_d2  = u(3);
+common_mode_d2 = u(4);
 
 %%Equations of motion
 x_acceleration_d1 = -(1/mass)*sin(pitch_d1)* common_mode_d1;
@@ -38,9 +37,6 @@ pitch_acceleration_d1 = (arm_moment/inertia_moment)*diff_mode_d1;
 x_acceleration_d2 = -(1/mass)*sin(pitch_d2)* common_mode_d2;
 z_acceleration_d2 = -gravitational_acceleration +(1/mass)*cos(pitch_d2)* common_mode_d2;
 pitch_acceleration_d2 = (arm_moment/inertia_moment)*diff_mode_d2;
-%%Equations of thrust forces
-%throttle_ref = alpha*[diff_mode common_mode]';
-%f_velocity = (-[f1 f2]'/tau) + throttle_ref/tau;
 
 %% 
 

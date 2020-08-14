@@ -5,19 +5,19 @@ function simulate()
     hold on
     plot_prediction_d1 = plot(0,0,'or-', 'Linewidth', 1.5);
     plot_trajectory_d1 = plot(0,0,'db-','Linewidth', 1.5);
-    
-    plot_prediction_d2 = plot(0,0,'or-', 'Linewidth', 1.5);
-    plot_trajectory_d2 = plot(0,0,'dk-','Linewidth', 1.5);
+%     
+    plot_prediction_d2 = plot(0,0,'ok-', 'Linewidth', 1.5);
+    plot_trajectory_d2 = plot(2,0,'dm-','Linewidth', 1.5);
    
     % plot_uav_body = plot(0,0,'Color',[1 0.6 0],'LineWidth',3);
     state_trajectory=[];
     control_variables=[];
     
     axis square
-    xlim([0 60])
-    ylim([0 60])
+    xlim([0 5])
+    ylim([0 5])
     
-    current_state = [0;0;0;0;0;0;0;0;0;0;0;0];
+    current_state = [0;0;0;0;0;0;2;0;0;0;0;0];
     current_MPC_solution = [];
     
     [H,Ts,drone1_info, drone2_info] = drones_info;
@@ -28,20 +28,21 @@ function simulate()
     for k = 1:50
         
         %% Run the controller
-        [command_d1, command_d2, current_MPC_solution, predicted_trajectory_d1,predicted_trajectory_d2] = ...
+        [command, current_MPC_solution, predicted_trajectory] = ...
             optimizetrajectory(current_state, current_MPC_solution);
         
         %% Run the simulation
-        current_state = simulate_timestep(current_state, command_d1,command_d2);
+        current_state = simulate_timestep(current_state, command);
 
         %% Visualize
-        plot_prediction_d1.XData = predicted_trajectory_d1(:,1);
-        plot_prediction_d1.YData = predicted_trajectory_d1(:,2);
+        plot_prediction_d1.XData = predicted_trajectory(:,1);
+        plot_prediction_d1.YData = predicted_trajectory(:,2);
         plot_trajectory_d1.XData(end+1) = current_state(1);
         plot_trajectory_d1.YData(end+1) = current_state(2);
+
         
-        plot_prediction_d2.XData = predicted_trajectory_d2(:,1);
-        plot_prediction_d2.YData = predicted_trajectory_d2(:,2);
+        plot_prediction_d2.XData = predicted_trajectory(:,7);
+        plot_prediction_d2.YData = predicted_trajectory(:,8);
         plot_trajectory_d2.XData(end+1) = current_state(7);
         plot_trajectory_d2.YData(end+1) = current_state(8);
      %   plot_uav_body.XData = [0 -sin(current_state(3))]*4 + current_state(1);
@@ -53,14 +54,14 @@ function simulate()
         drawnow
         pause(0.05)
     end
-        figure
-    plot(command_d1(:,1));
-    hold on
-    plot(command_d1(:,2));
-     figure
-    plot(command_d2(:,1));
-    hold on
-    plot(command_d2(:,2));
+%         figure
+%     plot(command(:,1));
+%     hold on
+%     plot(command(:,2));
+%      figure
+%     plot(command(:,3));
+%     hold on
+%     plot(command(:,4));
     
     save('states.mat','state_trajectory')
     save('control.mat','control_variables')
