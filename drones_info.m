@@ -1,6 +1,6 @@
 function [H,Ts,drone1_info, drone2_info] = drones_info
     
-    H=6;
+    H=15;
     Ts = 0.2;
     
     id1_u1 = 1:H;

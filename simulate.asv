@@ -55,7 +55,7 @@ function simulate()
         drawnow
         pause(0.05)
         
-  legend([plot_trajectory_d1 plot_trajectory_d2],'Drone 1','Drone 2')
+  legend([plot_trajectory_d1 plot_trajectory_d2],'plot 1','plot 3')
 
     end
 %         figure

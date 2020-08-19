@@ -11,19 +11,23 @@
     xvelocity_init_d1 = current_state(4);
     zvelocity_init_d1 = current_state(5);
     angvelocity_init_d1 = current_state(6);
+    f1_init = current_state(7);
+    f2_init = current_state(8);
     
     % drone 2
 
-    x_init_d2 = current_state(7);
-    z_init_d2 = current_state(8);
-    theta_init_d2 = current_state(9);
-    xvelocity_init_d2 = current_state(10);
-    zvelocity_init_d2 = current_state(11);
-    angvelocity_init_d2 = current_state(12);
+    x_init_d2 = current_state(9);
+    z_init_d2 = current_state(10);
+    theta_init_d2 = current_state(11);
+    xvelocity_init_d2 = current_state(12);
+    zvelocity_init_d2 = current_state(13);
+    angvelocity_init_d2 = current_state(14);
+    f3_init = current_state(15);
+    f4_init= current_state(16);
     
-    init_drone1 = [x_init_d1; z_init_d1; theta_init_d1; xvelocity_init_d1; zvelocity_init_d1; angvelocity_init_d1];
+    init_drone1 = [x_init_d1; z_init_d1; theta_init_d1; xvelocity_init_d1; zvelocity_init_d1; angvelocity_init_d1;f1_init;f2_init];
     
-    init_drone2 = [x_init_d2; z_init_d2; theta_init_d2; xvelocity_init_d2; zvelocity_init_d2; angvelocity_init_d2];
+    init_drone2 = [x_init_d2; z_init_d2; theta_init_d2; xvelocity_init_d2; zvelocity_init_d2; angvelocity_init_d2;f3_init;f4_init];
     
   %% optimizer
   
@@ -57,6 +61,8 @@ ub=[];
    id1_dotx = drone1_info(6,:);
    id1_dotz = drone1_info(7,:);
    id1_dottheta = drone1_info(8,:);
+   id1_f1 = drone1_info(9,:);
+   id1_f2 = drone1_info(10,:);
    
    % drone 2
    id2_u1 = drone2_info(1,:);
@@ -67,7 +73,8 @@ ub=[];
    id2_dotx = drone2_info(6,:);
    id2_dotz = drone2_info(7,:);
    id2_dottheta = drone2_info(8,:);
-
+   id2_f3 = drone1_info(9,:);
+   id2_f4 = drone1_info(10,:);
    %% optimal control
    % drone 1
    u1_optimum_d1 = optimum(id1_u1);
@@ -79,6 +86,8 @@ ub=[];
    xvelocity_optimum_d1 = optimum(id1_dotx);
    zvelocity_optimum_d1 = optimum(id1_dotz);
    angvelocity_optimum_d1 = optimum(id1_dottheta);
+   f1_optimum = optimum(id1_f1);
+   f2_optimum = optimum(id1_21);
    
    % drone 2
    u1_optimum_d2 = optimum(id2_u1);

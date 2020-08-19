@@ -57,14 +57,14 @@ com_z = (z_d1+z_d2)/2;
 % vector_drone1=[x_d1; z_d1;mode_diff_d1; mode_common_d1; theta_d1; x_velocity_d1 ;z_velocity_d1;angular_velocity_d1];
 % vector_drone2=[x_d2; z_d2;mode_diff_d2; mode_common_d2; theta_d2; x_velocity_d2 ;z_velocity_d2;angular_velocity_d2];
 
-vector_drone1=[com_x;mode_diff_d1; mode_common_d1; theta_d1; x_velocity_d1 ;z_velocity_d1;angular_velocity_d1];
-vector_drone2=[com_z;mode_diff_d2; mode_common_d2; theta_d2; x_velocity_d2 ;z_velocity_d2;angular_velocity_d2];
+vector_drone1=[com_x;5*mode_diff_d1; mode_common_d1; theta_d1; x_velocity_d1 ;z_velocity_d1;angular_velocity_d1];
+vector_drone2=[com_z;6*mode_diff_d2; mode_common_d2; theta_d2; x_velocity_d2 ;z_velocity_d2;angular_velocity_d2];
 
-vector_drones=[vector_drone1;vector_drone2];
-ref_d1=[5*ones(H,1); zeros(H,1);10*ones(H,1);zeros(4*H,1)];
-ref_d2=[5*ones(H,1); zeros(H,1);10*ones(H,1);zeros(4*H,1)];
+vector_drones=[vector_drone1;vector_drone2;0.9*(sqrt((x_d2-x_d1).^2+(z_d2-z_d1).^2))];
+ref_d1=[20*ones(H,1); zeros(H,1);10*ones(H,1);zeros(4*H,1)];
+ref_d2=[20*ones(H,1); zeros(H,1);10*ones(H,1);zeros(4*H,1)];
 
-ref=[ref_d1;ref_d2];
+ref=[ref_d1;ref_d2;5*ones(H,1)];
 
 cost = sum(vecnorm(vector_drones-ref).^2);
 

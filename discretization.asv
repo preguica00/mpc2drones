@@ -16,6 +16,8 @@ id1_theta = drone1_info(5,:);
 id1_dotx = drone1_info(6,:);
 id1_dotz = drone1_info(7,:);
 id1_dottheta = drone1_info(8,:);
+id1_f1 = drone1_info(9,:);
+id1_f2 = drone1_info(10,:);
 
 % drone 2
 id2_u1 = drone2_info(1,:);
@@ -26,6 +28,8 @@ id2_theta = drone2_info(5,:);
 id2_dotx = drone2_info(6,:);
 id2_dotz = drone2_info(7,:);
 id2_dottheta = drone2_info(8,:);
+id2_f3 = drone1_info(9,:);
+id2_f4 = drone1_info(10,:);
 
 
 %% Assigning drone variables
@@ -38,6 +42,9 @@ theta_d1 = y(id1_theta);
 x_velocity_d1 = y(id1_dotx);
 z_velocity_d1 = y(id1_dotz);
 angular_velocity_d1 = y(id1_dottheta);
+f1 = y(id1_f1);
+f2 = y(id1_f2);
+
 
 % drone 2
 
@@ -49,6 +56,9 @@ theta_d2 = y(id2_theta);
 x_velocity_d2 = y(id2_dotx);
 z_velocity_d2 = y(id2_dotz);
 angular_velocity_d2 = y(id2_dottheta);
+f3 = y(id2_f1);
+f3 = y(id_f1);
+
 
 %%
 current_state=[init_drone1;init_drone2];
